@@ -44,6 +44,8 @@
 #
 class vim {
 
+  Exec { path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ] }
+
   exec{'Cloning .vim module':
     command => 'git clone https://github.com/ricciocri/vimrc .vim',
     cwd     => '/root/',
