@@ -47,19 +47,19 @@ class vim {
   exec{'Cloning .vim module':
     command => 'git clone https://github.com/ricciocri/vimrc .vim',
     cwd     => '/root/',
-    unless  => 'ls /root/.vim',
+    unless  => 'ls -lrt /root/.vim',
   }
 
   exec{'changing url entries from  git: to https:':
     command => "sed -i -e 's/git:/https:/g' .gitmodules",
     cwd     => '/root/.vim',
-    onlyif  => 'ls /root/.vim',
+    onlyif  => 'ls -lrt /root/.vim',
   } 
 
   exec{'Pulling submodule in vim':
     command => 'git pull && git submodule init && git submodule update && git submodule status',
     cwd     => '/root/.vim',
-    onlyif  => 'ls /root/.vim',
+    onlyif  => 'ls -lrt /root/.vim',
   }
 
   exec{'Deleting symlink if already exists':
